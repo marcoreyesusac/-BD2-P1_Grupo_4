@@ -645,6 +645,7 @@ BEGIN
 END
 
 CREATE PROCEDURE PR5
+	@CodCourse int,
     @Name VARCHAR(255),
     @CreditsRequired INT
 AS
@@ -662,8 +663,8 @@ BEGIN
 
         -- Insertar el nuevo curso
         INSERT INTO BD2.practica1.Course (CodCourse, Name, CreditsRequired)
-        VALUES (@NextId, @Name, @CreditsRequired);
-        PRINT 'Curso ' + @Name + ' creado exitosamente con ID ' + CAST(@NextId AS VARCHAR(10));
+        VALUES (@CodCourse, @Name, @CreditsRequired);
+        PRINT 'Curso ' + @Name + ' creado exitosamente con ID ' + CAST(@CodCourse AS VARCHAR(10));
 
         -- Confirmar la transacción
         COMMIT TRANSACTION;
@@ -833,6 +834,7 @@ select * from BD2.practica1.TutorProfile
 SELECT * FROM BD2.practica1.Course
 SELECT * FROM BD2.practica1.Usuarios
 EXEC PR3 'lucia@gmail.com',110
+exec PR5 5,'prueba',5
 EXEC PR1 
     @Firstname = 'John',
     @Lastname = 'Doe',
